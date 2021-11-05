@@ -1,0 +1,5 @@
+.tox/
+.venv/
+.vscode/
+docs/
+node_modules/
