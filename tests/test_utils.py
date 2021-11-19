@@ -1,4 +1,3 @@
-#TODO: tests for utils
 from sample_ml_deployment.utils import(
     get_california_housing_prices_dataset,
     create_default_linear_regression_model,

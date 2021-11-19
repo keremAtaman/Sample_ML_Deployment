@@ -1,0 +1,6 @@
+fastapi
+pydantic
+boto3
+numpy
+sklearn
+uvicorn
