@@ -102,7 +102,7 @@ def retreive_environment_variable(env_var_name:str) ->Any:
     """
     result = None
     try:
-        result = os.environ[env_var_name]
+        result = os.getenv(env_var_name)
     except Exception as e:
         logging.exception(e) 
         logging.info(env_var_name + "does not exist as an environment variable")

@@ -22,4 +22,5 @@ def create_app(prediction_function:Callable):
             }
         except Exception as e:
             logging.exception(e)
+    
     return app
