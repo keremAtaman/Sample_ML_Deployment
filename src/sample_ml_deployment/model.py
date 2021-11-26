@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import Any
 from collections.abc import Callable
+import logging
 from pickle import dump, load
 
 class Model():
@@ -60,7 +61,11 @@ class Model():
         Returns:
             Model: The Model instance defined in filename
         """
-        return load(open(filename, 'rb'))
+        try:
+            return load(open(filename, 'rb'))
+        except Exception as e:
+            logging.exception(e)
+            logging.info("loading model failed")
 
     def default_save_method(self, filename:str) -> None:
         """Saves an instance of a model class
@@ -68,4 +73,8 @@ class Model():
         Args:
             filename (str): Name of the Model class dump file
         """
-        dump(self, open(filename, mode='wb'))
+        try:
+            dump(self, open(filename, mode='wb'))
+        except Exception as e:
+            logging.exception(e)
+            logging.info("saving model failed")
