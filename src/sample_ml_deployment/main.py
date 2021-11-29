@@ -7,8 +7,8 @@ from .model import Model
 import boto3
 import logging
 
-# TODO: check if uvicorn works with main, remove otherwise
 def main():
+    # TODO: Ensure environment variables/secrets work as intended
     s3_client = None
     try:
         s3_client = boto3.client("s3")
@@ -19,6 +19,7 @@ def main():
     model_key:str = retreive_environment_variable("model_key")
 
     # try to get the model from s3. If fails, create a new model
+    # TODO: check model loading from S3 bucket
     model_loaded_from_bucket:bool = False
     model:Model = get_model_from_s3(s3_client, bucket_name, model_key)
     # check if all required variables for bucket load are proper
@@ -27,6 +28,7 @@ def main():
         model = create_and_fit_default_model()
 
     # save model if it is not saved and we have the credentials
+    # TODO: check model saving to S3 bucket
     local_model_filename = retreive_environment_variable("local_model_filename")
     s3_model_filename = retreive_environment_variable("s3_model_filename")
     if not model_loaded_from_bucket:
