@@ -1,8 +1,10 @@
 from __future__ import annotations
 from typing import Any
 from collections.abc import Callable
-import logging
 from pickle import dump, load
+from logger.logger import getLogger
+
+_logger = getLogger()
 
 class Model():
     """Wrapper for an ML model"""
@@ -64,8 +66,8 @@ class Model():
         try:
             return load(open(filename, 'rb'))
         except Exception as e:
-            logging.exception(e)
-            logging.info("loading model failed")
+            _logger.exception(e)
+            _logger.info("loading model failed")
 
     def default_save_method(self, filename:str) -> None:
         """Saves an instance of a model class
@@ -76,5 +78,5 @@ class Model():
         try:
             dump(self, open(filename, mode='wb'))
         except Exception as e:
-            logging.exception(e)
-            logging.info("saving model failed")
+            _logger.exception(e)
+            _logger.info("saving model failed")

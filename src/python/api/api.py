@@ -1,8 +1,10 @@
 from typing import Callable
 from fastapi import FastAPI
-from .utils import convert_base_model_to_nparray
-import logging
-from .california_data_instance import CaliforniaDataInstance
+from data.data_utils import convert_base_model_to_nparray
+from data.california_data_instance import CaliforniaDataInstance
+from logger.logger import getLogger
+
+_logger = getLogger()
 
 def create_app(prediction_function:Callable):
     
@@ -21,6 +23,6 @@ def create_app(prediction_function:Callable):
                 "prediction": prediction[0]
             }
         except Exception as e:
-            logging.exception(e)
+            _logger.exception(e)
     
     return app

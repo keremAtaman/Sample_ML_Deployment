@@ -1,8 +1,8 @@
-from sample_ml_deployment import api
+from python.api import api
+from python.model.model_utils import create_and_fit_default_model
 from fastapi.testclient import TestClient
-from sample_ml_deployment import utils 
 
-model = utils.create_and_fit_default_model()
+model = create_and_fit_default_model()
 
 client = TestClient(
     api.create_app(model.predict))
