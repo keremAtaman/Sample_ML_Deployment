@@ -6,6 +6,7 @@ from python.logger.logger import getLogger
 
 _logger = getLogger()
 
+
 def get_california_housing_prices_dataset() -> Tuple[ndarray]:
     """Gets California housing prices dataset found in
     :link:`https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html`
