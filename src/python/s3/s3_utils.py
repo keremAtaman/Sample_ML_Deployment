@@ -1,5 +1,5 @@
 import boto3
-from logger.logger import getLogger
+from python.logger.logger import getLogger
 
 _logger = getLogger()
 

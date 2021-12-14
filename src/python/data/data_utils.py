@@ -2,7 +2,7 @@ from typing import Tuple
 from numpy import ndarray, array
 from sklearn.datasets import fetch_california_housing
 from pydantic import BaseModel
-from logger.logger import getLogger
+from python.logger.logger import getLogger
 
 _logger = getLogger()
 

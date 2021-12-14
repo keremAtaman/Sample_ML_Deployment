@@ -1,8 +1,8 @@
 from sklearn.linear_model import LinearRegression
-from model.model import Model
+from python.model.model import Model
 from pickle import load
-from logger.logger import getLogger
-from data.data_utils import get_california_housing_prices_dataset
+from python.logger.logger import getLogger
+from python.data.data_utils import get_california_housing_prices_dataset
 
 _logger = getLogger()
 

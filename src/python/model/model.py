@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any
 from collections.abc import Callable
 from pickle import dump, load
-from logger.logger import getLogger
+from python.logger.logger import getLogger
 
 _logger = getLogger()
 

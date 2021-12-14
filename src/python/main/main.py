@@ -1,10 +1,10 @@
-from model.model_utils import (create_and_fit_default_model,
+from python.model.model_utils import (create_and_fit_default_model,
                                 get_model_from_s3)
-from s3.s3_utils import (upload_file_to_bucket, get_s3_client)
-from api.api import create_app
-from model.model import Model
+from python.s3.s3_utils import (upload_file_to_bucket, get_s3_client)
+from python.api.api import create_app
+from python.model.model import Model
 from typing import Any
-from logger.logger import getLogger
+from python.logger.logger import getLogger
 import os
 
 _logger = getLogger()

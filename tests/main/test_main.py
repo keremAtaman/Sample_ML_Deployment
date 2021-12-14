@@ -1,4 +1,4 @@
-from python.main import (main, retreive_environment_variable)
+from python.main.main import (main, retreive_environment_variable)
 import os
 
 def test_retreive_existing_environment_variable():

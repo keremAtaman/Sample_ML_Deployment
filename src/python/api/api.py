@@ -1,8 +1,8 @@
 from typing import Callable
 from fastapi import FastAPI
-from data.data_utils import convert_base_model_to_nparray
-from data.california_data_instance import CaliforniaDataInstance
-from logger.logger import getLogger
+from python.data.data_utils import convert_base_model_to_nparray
+from python.data.california_data_instance import CaliforniaDataInstance
+from python.logger.logger import getLogger
 
 _logger = getLogger()
 
