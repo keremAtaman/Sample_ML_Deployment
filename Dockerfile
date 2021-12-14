@@ -13,4 +13,4 @@ ARG GIT_HASH
 # install dependencies
 # TODO: use make instead of pip install to make life easier
 RUN pip install -rrequirements.txt
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "src.sample_ml_deployment.main:app"]
+CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "src.python.main.main:app"]
