@@ -1,5 +1,8 @@
 from python.logger.logger import getLogger
-from python.data.data_utils import get_california_housing_prices_dataset
+from python.data.data_utils import (get_california_housing_prices_dataset,
+                                    convert_base_model_to_nparray)
+from pydantic import BaseModel
+from numpy import array
 
 _logger = getLogger()
 
@@ -17,4 +20,15 @@ def test_get_california_housing_prices_dataset():
     #ensure # expected cols for X is acquired
     assert len(test[0][0]) == num_X_cols
 
-# TODO: convert_base_model_to_nparray
+def test_convert_base_model_to_nparray():
+    class BaseModelTestClass(BaseModel):
+        firstInput: float
+        secondInput: float
+    
+    input_ = {'firstInput': 1.0, 'secondInput': 2.0}
+    expected_output = array(list(input_.values()))
+
+    baseModelTestClass = BaseModelTestClass(firstInput = 1.0, secondInput = 2.0)
+    actual_output = convert_base_model_to_nparray(baseModelTestClass)
+
+    assert expected_output.all() == actual_output.all()
