@@ -6,8 +6,9 @@ from python.logger.logger import getLogger
 
 _logger = getLogger()
 
-def create_app(prediction_function:Callable):
-    
+
+def create_app(prediction_function: Callable):
+
     app = FastAPI()
 
     @app.get("/")
@@ -24,5 +25,5 @@ def create_app(prediction_function:Callable):
             }
         except Exception as e:
             _logger.exception(e)
-    
+
     return app

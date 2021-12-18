@@ -4,3 +4,5 @@ boto3
 numpy
 sklearn
 uvicorn
+tox
+flake8
