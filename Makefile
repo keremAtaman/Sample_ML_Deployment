@@ -2,9 +2,9 @@ SHELL := /bin/bash
 .EXPORT_ALL_VARIABLES:
 include .env
 
-.PHONY: install clean init test lint
+.PHONY: install_requirements clean init test lint terraform_validate
 
-install:
+install_requirements: requirements.txt
 	@echo "Installing requirements"
 	pip install -r requirements.txt  
 
@@ -17,7 +17,10 @@ init: clean
 	mkdir ./sample_ml_deployment
 
 test:
-	@tox
+	tox
 
 lint:
-	@tox -e lint
+	tox -e lint
+
+terraform_validate:
+	terraform validate

@@ -6,6 +6,7 @@ from python.logger.logger import getLogger
 
 _logger = getLogger()
 
+
 class Model():
     """Wrapper for an ML model"""
 
