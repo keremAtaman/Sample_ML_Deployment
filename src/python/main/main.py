@@ -1,5 +1,5 @@
 from python.model.model_utils import (create_and_fit_default_model,
-                                get_model_from_s3)
+                                      get_model_from_s3)
 from python.s3.s3_utils import (upload_file_to_bucket, get_s3_client)
 from python.api.api import create_app
 from python.model.model import Model
@@ -9,7 +9,8 @@ import os
 
 _logger = getLogger()
 
-def retreive_environment_variable(env_var_name:str) ->Any:
+
+def retreive_environment_variable(env_var_name: str) -> Any:
     """Gets the environment variable with the name "env_var_name"
         If the environment variable does not exist, logs the exception and
         returns None
@@ -24,20 +25,21 @@ def retreive_environment_variable(env_var_name:str) ->Any:
     try:
         result = os.getenv(env_var_name)
     except Exception as e:
-        _logger.exception(e) 
+        _logger.exception(e)
         _logger.info(env_var_name + "does not exist as an environment variable")
 
     return result
 
+
 def main():
     s3_client = get_s3_client()
-    bucket_name:str = retreive_environment_variable("bucket_name")
-    model_key:str = retreive_environment_variable("model_key")
+    bucket_name: str = retreive_environment_variable("bucket_name")
+    model_key: str = retreive_environment_variable("model_key")
 
     # try to get the model from s3. If fails, create a new model
     # TODO: check model loading from S3 bucket
-    model_loaded_from_bucket:bool = False
-    model:Model = get_model_from_s3(s3_client, bucket_name, model_key)
+    model_loaded_from_bucket: bool = False
+    model: Model = get_model_from_s3(s3_client, bucket_name, model_key)
     # check if all required variables for bucket load are proper
     # failed to load a model, so create the default model
     if model is None:
@@ -51,7 +53,7 @@ def main():
         try:
             model.save(local_model_filename)
             upload_file_to_bucket(
-                    s3_client, local_model_filename, 
+                    s3_client, local_model_filename,
                     bucket_name, s3_model_filename)
         except Exception as e:
             _logger.exception(e)
@@ -59,5 +61,6 @@ def main():
 
     # Create the API
     return create_app(model.predict)
+
 
 app = main()

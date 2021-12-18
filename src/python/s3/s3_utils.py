@@ -3,8 +3,9 @@ from python.logger.logger import getLogger
 
 _logger = getLogger()
 
-def upload_file_to_bucket(s3_client, local_filename:str, bucket_name:str, 
-                    s3_filename:str) -> bool:
+
+def upload_file_to_bucket(s3_client, local_filename: str, bucket_name: str,
+                          s3_filename: str) -> bool:
     """Uploads a local file to s3 bucket
 
     Args:
@@ -16,7 +17,7 @@ def upload_file_to_bucket(s3_client, local_filename:str, bucket_name:str,
     Returns:
         bool: True if successfully uploaded, False otherwise
     """
-    # NOTE: Each Amazon S3 object has data, a key, and metadata. 
+    # NOTE: Each Amazon S3 object has data, a key, and metadata.
     # The object key (or key name) uniquely identifies the object in a bucket
     try:
         s3_client.upload_file(
@@ -27,12 +28,13 @@ def upload_file_to_bucket(s3_client, local_filename:str, bucket_name:str,
 
     return False
 
+
 def get_s3_client():
     # TODO: Ensure environment variables/secrets work as intended
     s3_client = None
     try:
         s3_client = boto3.client("s3")
     except Exception as e:
-        _logger.exception(e) 
+        _logger.exception(e)
         _logger.info("s3 client could not be created")
     return s3_client
